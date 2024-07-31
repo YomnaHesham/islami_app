@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            "إسلامى",
+            "إسلامي",
           ),
         ),
         body: Container(

@@ -29,7 +29,27 @@ class AppTheme {
       showSelectedLabels: true,
       showUnselectedLabels: false,
     ),
+    textTheme: TextTheme(
+      headlineSmall: GoogleFonts.elMessiri(
+        fontWeight: FontWeight.w600,
+        fontSize: 25,
+        color: blackColor,
+      ),
+      titleLarge: GoogleFonts.inder(
+        fontWeight: FontWeight.w400,
+        fontSize: 25,
+        color: blackColor,
+      ),
+      titleMedium: GoogleFonts.inder(
+        fontWeight: FontWeight.w400,
+        fontSize: 20,
+        color: blackColor,
+      ),
+    ),
   );
+
+  //=========================Dark============================//
+
   static ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: Colors.transparent,
     appBarTheme: AppBarTheme(
