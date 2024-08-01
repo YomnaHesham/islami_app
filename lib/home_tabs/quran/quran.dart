@@ -252,21 +252,24 @@ class QuranTab extends StatelessWidget {
           thickness: 3,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text(
-              "عدد الآيات",
-              style: Theme.of(context).textTheme.headlineSmall,
-              textAlign: TextAlign.center,
+            Expanded(
+              child: Text(
+                "عدد الآيات",
+                style: Theme.of(context).textTheme.headlineSmall,
+                textAlign: TextAlign.center,
+              ),
             ),
             VerticalDivider(
               color: AppTheme.lightPrimaryColor,
               thickness: 3,
             ),
-            Text(
-              "اسم السورة",
-              style: Theme.of(context).textTheme.headlineSmall,
-              textAlign: TextAlign.center,
+            Expanded(
+              child: Text(
+                "اسم السورة",
+                style: Theme.of(context).textTheme.headlineSmall,
+                textAlign: TextAlign.center,
+              ),
             ),
           ],
         ),
@@ -274,48 +277,49 @@ class QuranTab extends StatelessWidget {
           color: AppTheme.lightPrimaryColor,
           thickness: 3,
         ),
-        SizedBox(
-          height: 12,
-        ),
         Expanded(
-          child: ListView.separated(
-            itemBuilder: (context, index) => InkWell(
-              onTap: () => Navigator.of(context).pushNamed(
-                  SuraDetailsScreen.routName,
-                  arguments: SuraDetailsModel(
-                      suraName: suraNames[index], suraNumber: index)),
-              child: Text(
-                suraNames[index],
-                style: Theme.of(context).textTheme.titleLarge,
-                textAlign: TextAlign.center,
+          child: Row(
+            children: [
+              Expanded(
+                child: ListView.separated(
+                  itemBuilder: (context, index) => Text(
+                    versesNumber[index].toString(),
+                    style: Theme.of(context).textTheme.titleLarge,
+                    textAlign: TextAlign.center,
+                  ),
+                  itemCount: versesNumber.length,
+                  separatorBuilder: (context, index) => SizedBox(
+                    height: 16,
+                  ),
+                ),
               ),
-            ),
-            itemCount: suraNames.length,
-            separatorBuilder: (context, index) => SizedBox(
-              height: 16,
-            ),
+              VerticalDivider(
+                color: AppTheme.lightPrimaryColor,
+                thickness: 3,
+              ),
+              Expanded(
+                child: ListView.separated(
+                  itemBuilder: (context, index) => InkWell(
+                    onTap: () => Navigator.of(context).pushNamed(
+                        SuraDetailsScreen.routName,
+                        arguments: SuraDetailsModel(
+                            suraName: suraNames[index], suraNumber: index)),
+                    child: Text(
+                      suraNames[index],
+                      style: Theme.of(context).textTheme.titleLarge,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  itemCount: suraNames.length,
+                  separatorBuilder: (context, index) => SizedBox(
+                    height: 16,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
-        // VerticalDivider(
-        //   color: AppTheme.lightPrimaryColor,
-        //   thickness: 3,
-        // ),
-        // Expanded(
-        //   child: ListView.separated(
-        //     itemBuilder: (context, index) => Text(
-        //       versesNumber[index].toString(),
-        //       style: Theme.of(context).textTheme.titleLarge,
-        //       textAlign: TextAlign.center,
-        //     ),
-        //     itemCount: versesNumber.length,
-        //     separatorBuilder: (context, index) => SizedBox(
-        //       height: 16,
-        //     ),
-        //   ),
-        // ),
       ],
     );
   }
 }
-
-

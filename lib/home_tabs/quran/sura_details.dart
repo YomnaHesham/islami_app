@@ -67,12 +67,10 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
                   endIndent: 32,
                   indent: 32,
                 ),
-                SizedBox(
-                  height: 16,
-                ),
+
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(12),
                     child: ListView.builder(
                       itemBuilder: (context, index) {
                         return Text(
