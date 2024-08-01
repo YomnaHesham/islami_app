@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islami/app_theme.dart';
-import 'package:islami/home_tabs/sura_details.dart';
+import 'package:islami/home_tabs/quran/sura_details.dart';
+import 'package:islami/home_tabs/quran/sura_details_model.dart';
 
 class QuranTab extends StatelessWidget {
   List<String> suraNames = [
@@ -279,8 +280,10 @@ class QuranTab extends StatelessWidget {
         Expanded(
           child: ListView.separated(
             itemBuilder: (context, index) => InkWell(
-              onTap: () =>
-                  Navigator.of(context).pushNamed(SuraDetailsScreen.routName),
+              onTap: () => Navigator.of(context).pushNamed(
+                  SuraDetailsScreen.routName,
+                  arguments: SuraDetailsModel(
+                      suraName: suraNames[index], suraNumber: index)),
               child: Text(
                 suraNames[index],
                 style: Theme.of(context).textTheme.titleLarge,
@@ -293,8 +296,26 @@ class QuranTab extends StatelessWidget {
             ),
           ),
         ),
-
+        // VerticalDivider(
+        //   color: AppTheme.lightPrimaryColor,
+        //   thickness: 3,
+        // ),
+        // Expanded(
+        //   child: ListView.separated(
+        //     itemBuilder: (context, index) => Text(
+        //       versesNumber[index].toString(),
+        //       style: Theme.of(context).textTheme.titleLarge,
+        //       textAlign: TextAlign.center,
+        //     ),
+        //     itemCount: versesNumber.length,
+        //     separatorBuilder: (context, index) => SizedBox(
+        //       height: 16,
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }
 }
+
+

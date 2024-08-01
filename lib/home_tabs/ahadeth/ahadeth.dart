@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:islami/app_theme.dart';
+import 'package:islami/home_tabs/ahadeth/hadeth_details.dart';
 
 class AhadethTab extends StatelessWidget {
-  int hadethNumber=1;
-   AhadethTab({super.key});
+  int hadethNumber = 1;
+
+  AhadethTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +30,15 @@ class AhadethTab extends StatelessWidget {
         ),
         Expanded(
           child: ListView.separated(
-            itemBuilder: (context, index) => Text(
-              "الحديث رقم $hadethNumber",
-              style: Theme.of(context).textTheme.titleLarge,
-              textAlign: TextAlign.center,
+            itemBuilder: (context, index) => InkWell(
+              onTap: () => Navigator.of(context).pushNamed(
+                HadethDetails.routName,
+              ),
+              child: Text(
+                "الحديث رقم $hadethNumber",
+                style: Theme.of(context).textTheme.titleLarge,
+                textAlign: TextAlign.center,
+              ),
             ),
             itemCount: 50,
             separatorBuilder: (context, index) => SizedBox(

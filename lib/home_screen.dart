@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:islami/app_theme.dart';
 
-import 'package:islami/home_tabs/ahadeth.dart';
-import 'package:islami/home_tabs/quran.dart';
+import 'package:islami/home_tabs/ahadeth/ahadeth.dart';
+import 'package:islami/home_tabs/quran/quran.dart';
 import 'package:islami/home_tabs/radio.dart';
 import 'package:islami/home_tabs/sebha.dart';
 import 'package:islami/home_tabs/settings.dart';
@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: ImageIcon(
                 AssetImage("assets/images/icon_hadeth.png"),
               ),
-              label: "Hadeth",
+              label: "Ahadeth",
               backgroundColor: AppTheme.lightPrimaryColor,
             ),
             BottomNavigationBarItem(
