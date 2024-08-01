@@ -44,6 +44,7 @@ class HadethDetails extends StatelessWidget {
                   indent: 32,
                 ),
 
+
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
