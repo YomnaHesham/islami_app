@@ -62,7 +62,8 @@ class _AhadethTabState extends State<AhadethTab> {
   }
 
   loadHadethFile() async {
-    String hadethFile = await rootBundle.loadString("assets/files/ahadeth.txt");
+    String hadethFile =
+        await rootBundle.loadString("assets/files/ahadeth.txt");
 
     List<String> ahadeth = hadethFile.split("#");
     for (int i = 0; i < ahadeth.length; i++) {

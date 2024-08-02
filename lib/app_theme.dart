@@ -10,8 +10,13 @@ class AppTheme {
   static const Color goldColor = Color(0xFFFACC1D);
 
   static ThemeData lightTheme = ThemeData(
+    primaryColor: lightPrimaryColor,
     scaffoldBackgroundColor: Colors.transparent,
     appBarTheme: AppBarTheme(
+      iconTheme: IconThemeData(
+        size: 32,
+        color: blackColor,
+      ),
       elevation: 0,
       backgroundColor: Colors.transparent,
       centerTitle: true,
@@ -21,6 +26,7 @@ class AppTheme {
         color: blackColor,
       ),
     ),
+    dividerColor: lightPrimaryColor,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: lightPrimaryColor,
       type: BottomNavigationBarType.shifting,
@@ -51,8 +57,14 @@ class AppTheme {
   //=========================Dark============================//
 
   static ThemeData darkTheme = ThemeData(
+    primaryColor: darkPrimaryColor,
+
     scaffoldBackgroundColor: Colors.transparent,
     appBarTheme: AppBarTheme(
+      iconTheme: IconThemeData(
+        size: 32,
+        color: whiteColor,
+      ),
       elevation: 0,
       backgroundColor: Colors.transparent,
       centerTitle: true,
@@ -62,13 +74,31 @@ class AppTheme {
         color: whiteColor,
       ),
     ),
+    dividerColor: goldColor,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: darkPrimaryColor,
       type: BottomNavigationBarType.shifting,
       selectedItemColor: goldColor,
       unselectedItemColor: whiteColor,
-      showSelectedLabels: false,
+      showSelectedLabels: true,
       showUnselectedLabels: false,
+    ),
+    textTheme: TextTheme(
+      headlineSmall: GoogleFonts.elMessiri(
+        fontWeight: FontWeight.w600,
+        fontSize: 25,
+        color: whiteColor,
+      ),
+      titleLarge: GoogleFonts.inder(
+        fontWeight: FontWeight.w400,
+        fontSize: 25,
+        color: whiteColor,
+      ),
+      titleMedium: GoogleFonts.inder(
+        fontWeight: FontWeight.w400,
+        fontSize: 20,
+        color: goldColor,
+      ),
     ),
   );
 }
