@@ -3,6 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:islami/app_theme.dart';
 import 'package:islami/home_tabs/ahadeth/hadeth_details.dart';
 import 'package:islami/home_tabs/ahadeth/hadeth_model.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:islami/providers/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class AhadethTab extends StatefulWidget {
   AhadethTab({super.key});
@@ -16,6 +19,8 @@ class _AhadethTabState extends State<AhadethTab> {
 
   @override
   Widget build(BuildContext context) {
+    var pro = Provider.of<ThemeProvider>(context);
+
     if (allAhadeth.isEmpty) {
       loadHadethFile();
     }
@@ -23,16 +28,20 @@ class _AhadethTabState extends State<AhadethTab> {
       children: [
         Image.asset("assets/images/hadeth_logo.png"),
         Divider(
-          color: AppTheme.lightPrimaryColor,
+          color:  pro.mode == ThemeMode.light
+              ? AppTheme.lightPrimaryColor
+              : AppTheme.goldColor,
           thickness: 3,
         ),
         Text(
-          "الأحاديث",
+          "ahadeth".tr(),
           style: Theme.of(context).textTheme.headlineSmall,
           textAlign: TextAlign.center,
         ),
         Divider(
-          color: AppTheme.lightPrimaryColor,
+          color: pro.mode == ThemeMode.light
+              ? AppTheme.lightPrimaryColor
+              : AppTheme.goldColor,
           thickness: 3,
         ),
         SizedBox(

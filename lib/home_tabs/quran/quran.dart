@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:islami/app_theme.dart';
 import 'package:islami/home_tabs/quran/sura_details.dart';
 import 'package:islami/home_tabs/quran/sura_details_model.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:islami/providers/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class QuranTab extends StatelessWidget {
   List<String> suraNames = [
@@ -241,6 +244,8 @@ class QuranTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var pro = Provider.of<ThemeProvider>(context);
+
     return Column(
       children: [
         Image.asset("assets/images/qur2an_screen_logo.png"),
@@ -248,25 +253,29 @@ class QuranTab extends StatelessWidget {
           height: 16,
         ),
         Divider(
-          color: AppTheme.lightPrimaryColor,
+          color: pro.mode == ThemeMode.light
+              ? AppTheme.lightPrimaryColor
+              : AppTheme.goldColor,
           thickness: 3,
         ),
         Row(
           children: [
             Expanded(
               child: Text(
-                "عدد الآيات",
+                "sura_name".tr(),
                 style: Theme.of(context).textTheme.headlineSmall,
                 textAlign: TextAlign.center,
               ),
             ),
             VerticalDivider(
-              color: AppTheme.lightPrimaryColor,
+              color: pro.mode == ThemeMode.light
+                  ? AppTheme.lightPrimaryColor
+                  : AppTheme.goldColor,
               thickness: 3,
             ),
             Expanded(
               child: Text(
-                "اسم السورة",
+                "ayat_number".tr(),
                 style: Theme.of(context).textTheme.headlineSmall,
                 textAlign: TextAlign.center,
               ),
@@ -274,29 +283,14 @@ class QuranTab extends StatelessWidget {
           ],
         ),
         Divider(
-          color: AppTheme.lightPrimaryColor,
+          color: pro.mode == ThemeMode.light
+              ? AppTheme.lightPrimaryColor
+              : AppTheme.goldColor,
           thickness: 3,
         ),
         Expanded(
           child: Row(
             children: [
-              Expanded(
-                child: ListView.separated(
-                  itemBuilder: (context, index) => Text(
-                    versesNumber[index].toString(),
-                    style: Theme.of(context).textTheme.titleLarge,
-                    textAlign: TextAlign.center,
-                  ),
-                  itemCount: versesNumber.length,
-                  separatorBuilder: (context, index) => SizedBox(
-                    height: 16,
-                  ),
-                ),
-              ),
-              VerticalDivider(
-                color: AppTheme.lightPrimaryColor,
-                thickness: 3,
-              ),
               Expanded(
                 child: ListView.separated(
                   itemBuilder: (context, index) => InkWell(
@@ -311,6 +305,25 @@ class QuranTab extends StatelessWidget {
                     ),
                   ),
                   itemCount: suraNames.length,
+                  separatorBuilder: (context, index) => SizedBox(
+                    height: 16,
+                  ),
+                ),
+              ),
+              VerticalDivider(
+                color: pro.mode == ThemeMode.light
+                    ? AppTheme.lightPrimaryColor
+                    : AppTheme.goldColor,
+                thickness: 3,
+              ),
+              Expanded(
+                child: ListView.separated(
+                  itemBuilder: (context, index) => Text(
+                    versesNumber[index].toString(),
+                    style: Theme.of(context).textTheme.titleLarge,
+                    textAlign: TextAlign.center,
+                  ),
+                  itemCount: versesNumber.length,
                   separatorBuilder: (context, index) => SizedBox(
                     height: 16,
                   ),

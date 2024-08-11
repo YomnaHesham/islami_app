@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:islami/app_theme.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:islami/home_tabs/ahadeth/ahadeth.dart';
 import 'package:islami/home_tabs/quran/quran.dart';
 import 'package:islami/home_tabs/radio.dart';
 import 'package:islami/home_tabs/sebha.dart';
 import 'package:islami/home_tabs/settings.dart';
+import 'package:islami/providers/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routName = "home";
@@ -29,16 +30,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var pro = Provider.of<ThemeProvider>(context);
+
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/default_bg.png"),
+          image: AssetImage(pro.mode == ThemeMode.light
+              ? "assets/images/default_bg.png"
+              : "assets/images/dark_bg.png"),
         ),
       ),
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            "إسلامي",
+            "islami".tr(),
           ),
         ),
         body: Container(
@@ -55,34 +60,44 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: ImageIcon(
                 AssetImage("assets/images/icon_quran.png"),
               ),
-              label: "Quran",
-              backgroundColor: AppTheme.lightPrimaryColor,
+              label: "quran".tr(),
+              backgroundColor: pro.mode == ThemeMode.light
+                  ? AppTheme.lightPrimaryColor
+                  : AppTheme.darkPrimaryColor,
             ),
             BottomNavigationBarItem(
               icon: ImageIcon(
                 AssetImage("assets/images/icon_hadeth.png"),
               ),
-              label: "Ahadeth",
-              backgroundColor: AppTheme.lightPrimaryColor,
+              label: "ahadeth".tr(),
+              backgroundColor: pro.mode == ThemeMode.light
+                  ? AppTheme.lightPrimaryColor
+                  : AppTheme.darkPrimaryColor,
             ),
             BottomNavigationBarItem(
               icon: ImageIcon(
                 AssetImage("assets/images/icon_sebha.png"),
               ),
-              label: "Sebha",
-              backgroundColor: AppTheme.lightPrimaryColor,
+              label: "sebha".tr(),
+              backgroundColor: pro.mode == ThemeMode.light
+                  ? AppTheme.lightPrimaryColor
+                  : AppTheme.darkPrimaryColor,
             ),
             BottomNavigationBarItem(
               icon: ImageIcon(
                 AssetImage("assets/images/icon_radio.png"),
               ),
-              label: "Radio",
-              backgroundColor: AppTheme.lightPrimaryColor,
+              label: "radio".tr(),
+              backgroundColor: pro.mode == ThemeMode.light
+                  ? AppTheme.lightPrimaryColor
+                  : AppTheme.darkPrimaryColor,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),
-              label: "Settings",
-              backgroundColor: AppTheme.lightPrimaryColor,
+              label: "settings".tr(),
+              backgroundColor: pro.mode == ThemeMode.light
+                  ? AppTheme.lightPrimaryColor
+                  : AppTheme.darkPrimaryColor,
             ),
           ],
         ),

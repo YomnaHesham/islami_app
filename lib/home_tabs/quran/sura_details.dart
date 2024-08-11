@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami/app_theme.dart';
 import 'package:islami/home_tabs/quran/sura_details_model.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:islami/providers/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class SuraDetailsScreen extends StatefulWidget {
   static const String routName = "suraDetails";
@@ -18,24 +21,31 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     var model = ModalRoute.of(context)?.settings.arguments as SuraDetailsModel;
+    var pro = Provider.of<ThemeProvider>(context);
+
     if (verses.isEmpty) {
       loadSuraFiles(model.suraNumber);
     }
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/default_bg.png"),
+          image: AssetImage(pro.mode == ThemeMode.light
+              ? "assets/images/default_bg.png"
+              : "assets/images/dark_bg.png"),
         ),
       ),
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            "إسلامي",
+            "islami".tr(),
           ),
         ),
         body: Container(
           margin: EdgeInsets.only(bottom: 98, left: 32, right: 32, top: 32),
           child: Card(
+            color: pro.mode == ThemeMode.light
+                ? AppTheme.whiteColor
+                : AppTheme.darkPrimaryColor,
             child: Column(
               children: [
                 SizedBox(
@@ -46,7 +56,11 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
                   children: [
                     Text(
                       "سورة ${model.suraName}",
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            color: pro.mode == ThemeMode.light
+                                ? AppTheme.whiteColor
+                                : AppTheme.goldColor,
+                          ),
                     ),
                     SizedBox(
                       width: 24,
@@ -57,26 +71,29 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
                         Icons.play_circle,
                         size: 24,
                       ),
-                      color: AppTheme.blackColor,
+                      color:  pro.mode == ThemeMode.light
+                          ?  AppTheme.blackColor
+                          : AppTheme.goldColor,
                     )
                   ],
                 ),
                 Divider(
-                  color: AppTheme.lightPrimaryColor,
+                  color:  pro.mode == ThemeMode.light
+                      ? AppTheme.lightPrimaryColor
+                      : AppTheme.goldColor,
                   thickness: 1,
                   endIndent: 32,
                   indent: 32,
                 ),
-
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(12),
                     child: ListView.builder(
                       itemBuilder: (context, index) {
                         return Text(
-                          "${verses[index]}(${index+1})",
+                          "${verses[index]}(${index + 1})",
                           style: Theme.of(context).textTheme.titleMedium,
-                          textDirection: TextDirection.rtl,
+                          // textDirection: TextDirection.rtl,
                           textAlign: TextAlign.center,
                         );
                       },

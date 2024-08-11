@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:islami/app_theme.dart';
+import 'package:islami/providers/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class SebhaTab extends StatefulWidget {
   SebhaTab({super.key});
@@ -16,6 +18,8 @@ class _SebhaTabState extends State<SebhaTab> {
 
   @override
   Widget build(BuildContext context) {
+    var pro = Provider.of<ThemeProvider>(context);
+
     return Container(
       width: double.infinity,
       child: Column(
@@ -50,7 +54,9 @@ class _SebhaTabState extends State<SebhaTab> {
                     child: Transform.rotate(
                       angle: rotationAngle,
                       child: Image.asset(
-                        "assets/images/body_sebha_logo.png",
+                        pro.mode == ThemeMode.light
+                            ? "assets/images/body_sebha_logo.png"
+                            : "assets/images/body_sebha_dark.png",
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -58,7 +64,9 @@ class _SebhaTabState extends State<SebhaTab> {
                 ],
               ),
               Image.asset(
-                "assets/images/head_sebha_logo.png",
+                pro.mode == ThemeMode.light
+                    ? "assets/images/head_sebha_logo.png"
+                    : "assets/images/head_sebha_dark.png",
                 fit: BoxFit.contain,
               ),
             ],
@@ -76,7 +84,9 @@ class _SebhaTabState extends State<SebhaTab> {
           Container(
             padding: EdgeInsets.all(24),
             decoration: BoxDecoration(
-              color: AppTheme.lightPrimaryColor.withOpacity(0.57),
+              color: pro.mode == ThemeMode.light
+                  ? AppTheme.lightPrimaryColor.withOpacity(0.57)
+                  : AppTheme.darkPrimaryColor,
               borderRadius: BorderRadius.circular(25),
             ),
             child: Text(
@@ -89,7 +99,10 @@ class _SebhaTabState extends State<SebhaTab> {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.lightPrimaryColor,
+              backgroundColor:  pro.mode == ThemeMode.light
+                  ?AppTheme.lightPrimaryColor
+                  : AppTheme.goldColor,
+
             ),
             onPressed: () {
               tsbehCount++;
@@ -110,7 +123,9 @@ class _SebhaTabState extends State<SebhaTab> {
               style: GoogleFonts.inder(
                 fontWeight: FontWeight.w400,
                 fontSize: 25,
-                color: AppTheme.whiteColor,
+                color: pro.mode == ThemeMode.light
+                    ?AppTheme.whiteColor
+                    : AppTheme.blackColor,
               ),
             ),
           ),

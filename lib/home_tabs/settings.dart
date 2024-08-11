@@ -2,21 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:islami/app_theme.dart';
 import 'package:islami/home_tabs/bottom_sheets/language_bottom_sheet.dart';
 import 'package:islami/home_tabs/bottom_sheets/theme_bottom_sheet.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:islami/providers/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class SettingsTab extends StatelessWidget {
   const SettingsTab({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var pro = Provider.of<ThemeProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "اللغة",
+            "language".tr(),
             style: Theme.of(context).textTheme.headlineSmall,
-            textDirection: TextDirection.rtl,
           ),
           SizedBox(
             height: 16,
@@ -38,14 +42,15 @@ class SettingsTab extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(
                   width: 2,
-                  color: AppTheme.lightPrimaryColor,
+                  color: pro.mode == ThemeMode.light
+                      ? AppTheme.lightPrimaryColor
+                      : AppTheme.goldColor,
                 ),
                 borderRadius: BorderRadius.circular(16),
                 color: Colors.transparent,
               ),
               child: Text(
-                "عربي",
-                textDirection: TextDirection.rtl,
+                context.locale == Locale("en") ? "english".tr() : "arabic".tr(),
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
             ),
@@ -54,9 +59,9 @@ class SettingsTab extends StatelessWidget {
             height: 48,
           ),
           Text(
-            "النمط",
+            "theme".tr(),
             style: Theme.of(context).textTheme.headlineSmall,
-            textDirection: TextDirection.rtl,
+            // textDirection: TextDirection.rtl,
           ),
           SizedBox(
             height: 16,
@@ -78,14 +83,15 @@ class SettingsTab extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(
                   width: 2,
-                  color: AppTheme.lightPrimaryColor,
+                  color: pro.mode == ThemeMode.light
+                      ? AppTheme.lightPrimaryColor
+                      : AppTheme.goldColor,
                 ),
                 borderRadius: BorderRadius.circular(16),
                 color: Colors.transparent,
               ),
               child: Text(
-                "نهاري",
-                textDirection: TextDirection.rtl,
+                pro.mode == ThemeMode.light ? "light".tr() : "dark".tr(),
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
             ),

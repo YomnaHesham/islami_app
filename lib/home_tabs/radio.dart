@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:islami/app_theme.dart';
+import 'package:islami/providers/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class RadioTab extends StatelessWidget {
   const RadioTab({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var pro = Provider.of<ThemeProvider>(context);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -27,7 +31,9 @@ class RadioTab extends StatelessWidget {
               onPressed: () {},
               icon: Icon(
                 Icons.skip_previous,
-                color: AppTheme.lightPrimaryColor,
+                color: pro.mode == ThemeMode.light
+                    ? AppTheme.lightPrimaryColor
+                    : AppTheme.goldColor,
                 size: 32,
               ),
             ),
@@ -35,7 +41,9 @@ class RadioTab extends StatelessWidget {
               onPressed: () {},
               icon: Icon(
                 Icons.play_arrow,
-                color: AppTheme.lightPrimaryColor,
+                color: pro.mode == ThemeMode.light
+                    ? AppTheme.lightPrimaryColor
+                    : AppTheme.goldColor,
                 size: 48,
               ),
             ),
@@ -43,7 +51,9 @@ class RadioTab extends StatelessWidget {
               onPressed: () {},
               icon: Icon(
                 Icons.skip_next,
-                color: AppTheme.lightPrimaryColor,
+                color: pro.mode == ThemeMode.light
+                    ? AppTheme.lightPrimaryColor
+                    : AppTheme.goldColor,
                 size: 32,
               ),
             ),
