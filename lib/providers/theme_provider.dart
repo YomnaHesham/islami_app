@@ -29,25 +29,5 @@ class ThemeProvider extends ChangeNotifier {
 
     }
   }
-//
-// getThemeAtInit() async {
-//   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-//   bool? isDarkTheme = sharedPreferences.getBool("is_dark");
-//   if (isDarkTheme != null && isDarkTheme!) {
-//     mode = ThemeMode.dark;
-//   } else {
-//     mode = ThemeMode.light;
-//   }
-//   notifyListeners();
-// }
-//
-// bool get isDarkMode => mode == ThemeMode.dark;
-//
-// void toggleTheme(bool isOn) async {
-//   mode = isOn ? ThemeMode.dark : ThemeMode.light;
-//   notifyListeners();
-//   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-//   sharedPreferences.setBool(
-//       "is_dark", mode == ThemeMode.dark); //Update this as per your condition.
-// }
+
 }
