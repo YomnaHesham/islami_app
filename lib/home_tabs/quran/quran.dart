@@ -249,15 +249,14 @@ class QuranTab extends StatelessWidget {
     return Column(
       children: [
         Image.asset("assets/images/qur2an_screen_logo.png"),
-        SizedBox(
-          height: 16,
-        ),
+        const SizedBox(height: 16),
         Divider(
           color: pro.mode == ThemeMode.light
               ? AppTheme.lightPrimaryColor
               : AppTheme.goldColor,
           thickness: 3,
         ),
+        // Header Row with Sura Name and Aya Number
         Row(
           children: [
             Expanded(
@@ -288,48 +287,48 @@ class QuranTab extends StatelessWidget {
               : AppTheme.goldColor,
           thickness: 3,
         ),
+        // Combined ListView for Sura names and Aya numbers in a table format
         Expanded(
-          child: Row(
-            children: [
-              Expanded(
-                child: ListView.separated(
-                  itemBuilder: (context, index) => InkWell(
-                    onTap: () => Navigator.of(context).pushNamed(
-                        SuraDetailsScreen.routName,
-                        arguments: SuraDetailsModel(
-                            suraName: suraNames[index], suraNumber: index)),
-                    child: Text(
-                      suraNames[index],
-                      style: Theme.of(context).textTheme.titleLarge,
-                      textAlign: TextAlign.center,
+          child: ListView.separated(
+            itemCount: suraNames.length,
+            separatorBuilder: (context, index) => const SizedBox(height: 16),
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () => Navigator.of(context).pushNamed(
+                  SuraDetailsScreen.routName,
+                  arguments: SuraDetailsModel(
+                    suraName: suraNames[index],
+                    suraNumber: index,
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    // Sura Name
+                    Expanded(
+                      child: Text(
+                        suraNames[index],
+                        style: Theme.of(context).textTheme.titleLarge,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                  ),
-                  itemCount: suraNames.length,
-                  separatorBuilder: (context, index) => SizedBox(
-                    height: 16,
-                  ),
+                    VerticalDivider(
+                      color: pro.mode == ThemeMode.light
+                          ? AppTheme.lightPrimaryColor
+                          : AppTheme.goldColor,
+                      thickness: 3,
+                    ),
+                    // Verse Number
+                    Expanded(
+                      child: Text(
+                        versesNumber[index].toString(),
+                        style: Theme.of(context).textTheme.titleLarge,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              VerticalDivider(
-                color: pro.mode == ThemeMode.light
-                    ? AppTheme.lightPrimaryColor
-                    : AppTheme.goldColor,
-                thickness: 3,
-              ),
-              Expanded(
-                child: ListView.separated(
-                  itemBuilder: (context, index) => Text(
-                    versesNumber[index].toString(),
-                    style: Theme.of(context).textTheme.titleLarge,
-                    textAlign: TextAlign.center,
-                  ),
-                  itemCount: versesNumber.length,
-                  separatorBuilder: (context, index) => SizedBox(
-                    height: 16,
-                  ),
-                ),
-              ),
-            ],
+              );
+            },
           ),
         ),
       ],

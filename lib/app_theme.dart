@@ -27,6 +27,7 @@ class AppTheme {
       ),
     ),
     dividerColor: lightPrimaryColor,
+    
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: lightPrimaryColor,
       type: BottomNavigationBarType.shifting,
@@ -35,6 +36,7 @@ class AppTheme {
       showSelectedLabels: true,
       showUnselectedLabels: false,
     ),
+    
     textTheme: TextTheme(
       headlineSmall: GoogleFonts.elMessiri(
         fontWeight: FontWeight.w600,

@@ -55,10 +55,10 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "سورة ${model.suraName}",
+                      "سورة ${model.suraName}", // Display Sura name
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             color: pro.mode == ThemeMode.light
-                                ? AppTheme.whiteColor
+                                ? AppTheme.blackColor
                                 : AppTheme.goldColor,
                           ),
                     ),
